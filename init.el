@@ -1,10 +1,5 @@
 ;;; init.el -*- lexical-binding: t; -*-
 ;;; Code:
-(setq-default doom-font (font-spec :family "Hack" :size 12)
-              display-line-numbers-type 'relative
-              doom-themes-enable-bold t
-              doom-themes-enable-italic t)
-
 (doom! :feature
        debugger          ; FIXME stepping through code, to help you add bugs
        eval              ; run code, run (also, repls)
@@ -20,7 +15,9 @@
 
        :completion
        (company          ; the ultimate code completion backend
-        +auto)           ; as-you-type code completion
+        +auto            ; as-you-type code completion
+        +childframe)
+
        ;;(helm             ; the *other* search engine for love and life
        ;; +fuzzy)          ; enable fuzzy search backend for helm
        ;;ido               ; the other *other* search engine...
@@ -154,7 +151,7 @@
        :config
        ;; For literate config users. This will tangle+compile a config.org
        ;; literate config in your `doom-private-dir' whenever it changes.
-       ;;literate
+       literate
 
        ;; The default module sets reasonable defaults for Emacs. It also
        ;; provides a Spacemacs-inspired keybinding scheme, a custom yasnippet

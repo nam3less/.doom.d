@@ -1,37 +1,93 @@
+#+TITLE: Doom Emacs Configuration
+#+AUTHOR: Robin Beckmann
+#+EMAIL: robin.m.beckmann@gmail.com
+
+* Configuration
+** General Settings
+Set the users name and email address
+
+#+BEGIN_SRC emacs-lisp
 (setq user-full-name "Robin Beckmann"
       user-mail-address "robin.m.beckmann@gmail.com")
-
+#+END_SRC
+** Interface
+Set the font and configure the line numbers correctly.
+If set to ~'relative~, the numbering gets fucked up in org-mode
+#+BEGIN_SRC emacs-lisp
 (setq doom-font (font-spec :family "Hack" :size 14)
       display-line-numbers-type 'visual)
+#+END_SRC
 
+** Completion Settings
+*** Projectile
+Include hidden files in projectile's search
+#+BEGIN_SRC emacs-lisp
 (after! projectile
   (setq projectile-generic-command "find -L . -type f -print0"))
+#+END_SRC
 
+*** Company
+Reduce the minimum length of a sequence before company begins to display the
+possible completions.
+#+BEGIN_SRC emacs-lisp
 (after! company
   (setq-default company-minimum-prefix-length 1))
+#+END_SRC
 
+Set ~company-quickhelp-delay~ to enable company-quickhelp and display it fairly
+quickly.
+#+BEGIN_SRC emacs-lisp
 (after! company-quickhelp
   (setq company-quickhelp-delay 0.2))
+#+END_SRC
 
+** Language specific settings
+*** Javascript
+Set the correct javascript linter, because personally I prefer semicolons in
+Javascript.
+Furthermore Javascript code be indented using 2 spaces.
+#+BEGIN_SRC emacs-lisp
 (after! js2-mode
   (setq-default flycheck-javascript-standard-executable "semistandard"
                 js2-basic-offset 2))
+#+END_SRC
 
+*** Java
+Java code should be indented using 4 spaces.
+#+BEGIN_SRC emacs-lisp
 (after! java-mode
   (setq-default c-basic-offset 4))
+#+END_SRC
 
+*** Tex
+**** Keybindings
+- v :: View the current line in the generated PDF file.
+- c :: Execute a TeX command on the master of the current file. Useful to
+     rebuild the document.
+#+BEGIN_SRC emacs-lisp
 (after! latex
   (map! :map LaTeX-mode-map
         :localleader
         (:desc "View line" :n "v" #'TeX-view)
         (:desc "Command on master" :n "c" #'TeX-command-master)))
+#+END_SRC
 
+** Org-mode
+Enable line numbers
+#+BEGIN_SRC emacs-lisp
 (remove-hook 'org-mode-hook #'doom|disable-line-numbers)
+#+END_SRC
 
+*** Export settings
+#+BEGIN_SRC emacs-lisp
 (after! org
   (setq org-html-html5-fancy t
         org-html-doctype "html5"))
+#+END_SRC
 
+**** LaTeX Configuration
+Add KomaScript documentclasses
+#+BEGIN_SRC emacs-lisp
 (after! org
   (add-to-list 'org-latex-classes
                '("scrartcl"
@@ -58,7 +114,12 @@
                  ("\\subsection{%s}" . "\\subsection*{%s}")
                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
   (setq org-latex-default-class "scrartcl"))
+#+END_SRC
 
+*** Keybindings
+Activate all evil-org bindings.
+
+#+BEGIN_SRC emacs-lisp
 (after! org
   (setq evil-org-key-theme '(navigation
                              insert
@@ -69,8 +130,13 @@
                              todo
                              additional
                              calendar)))
+#+END_SRC
 
+Add the following keybindings under the localleader
+- e :: Invoke org-export. Easily export into bazillion different formats.
+#+BEGIN_SRC emacs-lisp
 (after! org
   (map! :map org-mode-map
         :localleader
         (:desc "Export" :n "e" #'org-export-dispatch)))
+#+END_SRC
