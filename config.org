@@ -18,6 +18,19 @@ If set to ~'relative~, the numbering gets fucked up in org-mode
       display-line-numbers-type 'visual)
 #+END_SRC
 
+Show trailing whitespace.
+#+BEGIN_SRC emacs-lisp
+(setq show-trailing-whitespace t)
+#+END_SRC
+
+*** Treemacs
+Ever wondered where you are in your filetree? Never again, 'cause treemacs will
+now follow your current file.
+#+BEGIN_SRC emacs-lisp
+(after! treemacs
+  (treemacs-follow-mode))
+#+END_SRC
+
 ** Completion Settings
 *** Projectile
 Include hidden files in projectile's search
@@ -41,6 +54,17 @@ quickly.
   (setq company-quickhelp-delay 0.2))
 #+END_SRC
 
+** Eshell
+*** Aliases
+- la :: ~ls -Al~
+- ll :: ~ls -l~
+
+#+BEGIN_SRC emacs-lisp
+(after! eshell
+  (set-eshell-alias!
+   "la" "ls -lA"
+   "ll" "ls -l"))
+#+END_SRC
 ** Language specific settings
 *** Javascript
 Set the correct javascript linter, because personally I prefer semicolons in

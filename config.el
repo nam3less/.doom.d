@@ -4,6 +4,11 @@
 (setq doom-font (font-spec :family "Hack" :size 14)
       display-line-numbers-type 'visual)
 
+(setq show-trailing-whitespace t)
+
+(after! treemacs
+  (treemacs-follow-mode))
+
 (after! projectile
   (setq projectile-generic-command "find -L . -type f -print0"))
 
@@ -12,6 +17,11 @@
 
 (after! company-quickhelp
   (setq company-quickhelp-delay 0.2))
+
+(after! eshell
+  (set-eshell-alias!
+   "la" "ls -lA"
+   "ll" "ls -l"))
 
 (after! js2-mode
   (setq-default flycheck-javascript-standard-executable "semistandard"
