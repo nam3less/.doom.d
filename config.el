@@ -25,10 +25,15 @@
 
 (after! js2-mode
   (setq-default flycheck-javascript-standard-executable "semistandard"
-                js2-basic-offset 2))
+                js2-basic-offset 2
+                js-indent-level 2)
+  (setq js2-basic-offset 2
+        js-indent-level 2))
 
 (after! java-mode
   (setq-default c-basic-offset 4))
+
+(setq company-box-icons-acphp '(nil))
 
 (after! latex
   (map! :map LaTeX-mode-map
@@ -44,7 +49,7 @@
 
 (after! org
   (add-to-list 'org-latex-classes
-               '("scrartcl"
+               '("koma-article"
                  "\\documentclass[11pt]{scrartcl}"
                  ("\\section{%s}" . "\\section*{%s}")
                  ("\\subsection{%s}" . "\\subsection*{%s}")
@@ -52,7 +57,7 @@
                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
   (add-to-list 'org-latex-classes
-               '("scrreprt"
+               '("koma-report"
                  "\\documentclass[11pt]{scrreprt}"
                  ("\\part{%s}" . "\\part*{%s}")
                  ("\\chapter{%s}" . "\\chapter*{%s}")
@@ -60,14 +65,14 @@
                  ("\\subsection{%s}" . "\\subsection*{%s}")
                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
   (add-to-list 'org-latex-classes
-               '("scrbook"
+               '("koma-book"
                  "\\documentclass[11pt]{scrbook}"
                  ("\\part{%s}" . "\\part*{%s}")
                  ("\\chapter{%s}" . "\\chapter*{%s}")
                  ("\\section{%s}" . "\\section*{%s}")
                  ("\\subsection{%s}" . "\\subsection*{%s}")
                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
-  (setq org-latex-default-class "scrartcl"))
+  (setq org-latex-default-class "kome-article"))
 
 (after! org
   (setq evil-org-key-theme '(navigation

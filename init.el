@@ -8,16 +8,12 @@
        (lookup           ; helps you navigate your code and documentation
         +docsets)        ; ...or in Dash docsets locally
        snippets          ; my elves. They type so I don't have to
-       spellcheck        ; tasing you for misspelling mispelling
-       (syntax-checker   ; tasing you for every semicolon you forget
-        +childframe)     ; use childframes for error popups (Emacs 26+ only)
        workspaces        ; tab emulation, persistence & separate workspaces
 
        :completion
        (company          ; the ultimate code completion backend
         +auto            ; as-you-type code completion
         +childframe)
-
        ;;(helm             ; the *other* search engine for love and life
        ;; +fuzzy)          ; enable fuzzy search backend for helm
        ;;ido               ; the other *other* search engine...
@@ -28,7 +24,6 @@
        ;;deft              ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
-       ;;doom-modeline     ; a snazzy Atom-inspired mode-line
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        evil-goggles      ; display visual hints when editing in evil
        fci               ; a `fill-column' indicator
@@ -48,17 +43,19 @@
        window-select     ; visually switch windows
 
        :editor
+       fold              ; (nigh) universal code folding
        ;;(format +onsave)  ; automated prettiness
+       ;;lispy             ; vim for lisp, for people who dont like vim
        multiple-cursors  ; editing in many places at once
        parinfer          ; turn lisp into python, sort of
        rotate-text       ; cycle region at point between text candidates
 
        :emacs
-       dired             ; making dired pretty [functional]
-       ediff             ; comparing files in Emacs
+       (dired            ; making dired pretty [functional]
+         +ranger         ; bringing the goodness of ranger to dired
+         +icons)         ; colorful icons for dired-mode
        electric          ; smarter, keyword-based electric-indent
        eshell            ; a consistent, cross-platform shell (WIP)
-       hideshow          ; basic code-folding support
        imenu             ; an imenu sidebar and searchable code index
        term              ; terminals in Emacs
        vc                ; version-control and Emacs, sitting in a tree
@@ -68,17 +65,22 @@
        ;;docker
        editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
+       flycheck          ; tasing you for every semicolon you forget
+       flyspell          ; tasing you for misspelling mispelling
        gist              ; interacting with github gists
+       ;;lsp
        ;;macos             ; MacOS-specific commands
-       make              ; run make tasks from Emacs
        magit             ; a git porcelain for Emacs
+       make              ; run make tasks from Emacs
        password-store    ; password manager for nerds
        pdf               ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
        rgb               ; creating color strings
+       ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
        ;;upload            ; map local to remote projects via ssh/ftp
        ;;wakatime
+       ;;vterm             ; another terminals in Emacs
 
        :lang
        ;;assembly          ; assembly for fun or debugging
@@ -117,7 +119,7 @@
         +present         ; Emacs for presentations
         +publish)        ; Emacs+Org as a static site generator
        ;;perl              ; write code no one else can comprehend
-       ;;php               ; perl's insecure younger brother
+       php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        purescript        ; javascript, but functional
        python            ; beautiful is better than ugly
@@ -131,6 +133,7 @@
        ;;solidity          ; do you need a blockchain? No.
        swift             ; who asked for emoji variables?
        web               ; the tubes
+       ;;vala              ; GObjective-C
 
        ;; Applications are complex and opinionated modules that transform Emacs
        ;; toward a specific purpose. They may have additional dependencies and
@@ -157,4 +160,4 @@
        ;; provides a Spacemacs-inspired keybinding scheme, a custom yasnippet
        ;; library, and additional ex commands for evil-mode. Use it as a
        ;; reference for your own modules.
-       (default +bindings +snippets +evil-commands))
+       (default +bindings +smartparens +snippets +evil-commands))

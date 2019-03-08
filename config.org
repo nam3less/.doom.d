@@ -73,7 +73,10 @@ Furthermore Javascript code be indented using 2 spaces.
 #+BEGIN_SRC emacs-lisp
 (after! js2-mode
   (setq-default flycheck-javascript-standard-executable "semistandard"
-                js2-basic-offset 2))
+                js2-basic-offset 2
+                js-indent-level 2)
+  (setq js2-basic-offset 2
+        js-indent-level 2))
 #+END_SRC
 
 *** Java
@@ -83,6 +86,11 @@ Java code should be indented using 4 spaces.
   (setq-default c-basic-offset 4))
 #+END_SRC
 
+*** PHP
+Disable icons in the autocomplete popup for PHP, because it's buggy.
+#+BEGIN_SRC emacs-lisp
+(setq company-box-icons-acphp '(nil))
+#+END_SRC
 *** Tex
 **** Keybindings
 - v :: View the current line in the generated PDF file.
@@ -114,7 +122,7 @@ Add KomaScript documentclasses
 #+BEGIN_SRC emacs-lisp
 (after! org
   (add-to-list 'org-latex-classes
-               '("scrartcl"
+               '("koma-article"
                  "\\documentclass[11pt]{scrartcl}"
                  ("\\section{%s}" . "\\section*{%s}")
                  ("\\subsection{%s}" . "\\subsection*{%s}")
@@ -122,7 +130,7 @@ Add KomaScript documentclasses
                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
   (add-to-list 'org-latex-classes
-               '("scrreprt"
+               '("koma-report"
                  "\\documentclass[11pt]{scrreprt}"
                  ("\\part{%s}" . "\\part*{%s}")
                  ("\\chapter{%s}" . "\\chapter*{%s}")
@@ -130,14 +138,14 @@ Add KomaScript documentclasses
                  ("\\subsection{%s}" . "\\subsection*{%s}")
                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
   (add-to-list 'org-latex-classes
-               '("scrbook"
+               '("koma-book"
                  "\\documentclass[11pt]{scrbook}"
                  ("\\part{%s}" . "\\part*{%s}")
                  ("\\chapter{%s}" . "\\chapter*{%s}")
                  ("\\section{%s}" . "\\section*{%s}")
                  ("\\subsection{%s}" . "\\subsection*{%s}")
                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
-  (setq org-latex-default-class "scrartcl"))
+  (setq org-latex-default-class "kome-article"))
 #+END_SRC
 
 *** Keybindings

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: execute statement
+# key: execute             
+# --
+$success = $${1:statement}->execute([
+    '${2:key}' => $${3:value}
+]);

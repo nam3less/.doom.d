@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: prepare statement
+# key: prepare
+# --
+$${1:statement} = $this->${2:connection}->prepare(
+    '${3:sql}'
+);

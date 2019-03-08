@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: try
+# key: try                       
+# --
+try {
+    ${3:}
+} catch (${1:\Exception} ${2:$e}) {
+    error_log($2->getMessage());
+    ${4:}
+}
