@@ -1,8 +1,8 @@
 (setq user-full-name "Robin Beckmann"
       user-mail-address "robin.m.beckmann@gmail.com")
 
-(setq doom-font (font-spec :family "Hack" :size 14)
-      display-line-numbers-type 'visual)
+(setq-default doom-font (font-spec :family "Hack" :size 14)
+              display-line-numbers-type 'visual)
 
 (setq show-trailing-whitespace t)
 
@@ -35,6 +35,11 @@
 
 (setq company-box-icons-acphp '(nil))
 
+(add-hook 'php-mode-hook
+          (lambda ()
+            (make-local-variable 'eldoc-documentation-function)
+            (setq eldoc-documentation-function 'phpactor-hover)))
+
 (after! latex
   (map! :map LaTeX-mode-map
         :localleader
@@ -47,7 +52,7 @@
   (setq org-html-html5-fancy t
         org-html-doctype "html5"))
 
-(after! org
+(after! ox-latex
   (add-to-list 'org-latex-classes
                '("koma-article"
                  "\\documentclass[11pt]{scrartcl}"
@@ -72,7 +77,7 @@
                  ("\\section{%s}" . "\\section*{%s}")
                  ("\\subsection{%s}" . "\\subsection*{%s}")
                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
-  (setq org-latex-default-class "kome-article"))
+  (setq org-latex-default-class "koma-article"))
 
 (after! org
   (setq evil-org-key-theme '(navigation

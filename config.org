@@ -1,6 +1,8 @@
 #+TITLE: Doom Emacs Configuration
 #+AUTHOR: Robin Beckmann
 #+EMAIL: robin.m.beckmann@gmail.com
+#+PROPERTY: header-args :tangle yes
+
 
 * Configuration
 ** General Settings
@@ -14,8 +16,8 @@ Set the users name and email address
 Set the font and configure the line numbers correctly.
 If set to ~'relative~, the numbering gets fucked up in org-mode
 #+BEGIN_SRC emacs-lisp
-(setq doom-font (font-spec :family "Hack" :size 14)
-      display-line-numbers-type 'visual)
+(setq-default doom-font (font-spec :family "Hack" :size 14)
+              display-line-numbers-type 'visual)
 #+END_SRC
 
 Show trailing whitespace.
@@ -91,6 +93,15 @@ Disable icons in the autocomplete popup for PHP, because it's buggy.
 #+BEGIN_SRC emacs-lisp
 (setq company-box-icons-acphp '(nil))
 #+END_SRC
+
+Enable phpactors hover function for eldoc
+#+BEGIN_SRC emacs-lisp
+(add-hook 'php-mode-hook
+          (lambda ()
+            (make-local-variable 'eldoc-documentation-function)
+            (setq eldoc-documentation-function 'phpactor-hover)))
+#+END_SRC
+
 *** Tex
 **** Keybindings
 - v :: View the current line in the generated PDF file.
@@ -120,7 +131,7 @@ Enable line numbers
 **** LaTeX Configuration
 Add KomaScript documentclasses
 #+BEGIN_SRC emacs-lisp
-(after! org
+(after! ox-latex
   (add-to-list 'org-latex-classes
                '("koma-article"
                  "\\documentclass[11pt]{scrartcl}"
@@ -145,7 +156,7 @@ Add KomaScript documentclasses
                  ("\\section{%s}" . "\\section*{%s}")
                  ("\\subsection{%s}" . "\\subsection*{%s}")
                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
-  (setq org-latex-default-class "kome-article"))
+  (setq org-latex-default-class "koma-article"))
 #+END_SRC
 
 *** Keybindings
