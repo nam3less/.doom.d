@@ -1,6 +1,8 @@
 #+TITLE: Doom Emacs Configuration
 #+AUTHOR: Robin Beckmann
 #+EMAIL: robin.m.beckmann@gmail.com
+#+PROPERTY: header-args :tangle yes
+
 
 * Configuration
 ** General Settings
@@ -14,8 +16,8 @@ Set the users name and email address
 Set the font and configure the line numbers correctly.
 If set to ~'relative~, the numbering gets fucked up in org-mode
 #+BEGIN_SRC emacs-lisp
-(setq doom-font (font-spec :family "Hack" :size 14)
-      display-line-numbers-type 'visual)
+(setq-default doom-font (font-spec :family "Hack" :size 14)
+              display-line-numbers-type 'visual)
 #+END_SRC
 
 Show trailing whitespace.
@@ -97,6 +99,15 @@ Get company to display completion for stdlib functions.
 (after! php-mode
   (set-company-backend! 'php-mode '(company-phpactor :seperate php-extras-company) 'company-dabbrev-code))
 #+END_SRC
+
+Enable phpactors hover function for eldoc
+#+BEGIN_SRC emacs-lisp
+(add-hook 'php-mode-hook
+          (lambda ()
+            (make-local-variable 'eldoc-documentation-function)
+            (setq eldoc-documentation-function 'phpactor-hover)))
+#+END_SRC
+
 *** Tex
 **** Keybindings
 - v :: View the current line in the generated PDF file.

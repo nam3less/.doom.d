@@ -1,8 +1,8 @@
 (setq user-full-name "Robin Beckmann"
       user-mail-address "robin.m.beckmann@gmail.com")
 
-(setq doom-font (font-spec :family "Hack" :size 14)
-      display-line-numbers-type 'visual)
+(setq-default doom-font (font-spec :family "Hack" :size 14)
+              display-line-numbers-type 'visual)
 
 (setq show-trailing-whitespace t)
 
@@ -37,6 +37,11 @@
 
 (after! php-mode
   (set-company-backend! 'php-mode '(company-phpactor :seperate php-extras-company) 'company-dabbrev-code))
+
+(add-hook 'php-mode-hook
+          (lambda ()
+            (make-local-variable 'eldoc-documentation-function)
+            (setq eldoc-documentation-function 'phpactor-hover)))
 
 (after! latex
   (map! :map LaTeX-mode-map
