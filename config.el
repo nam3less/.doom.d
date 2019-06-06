@@ -33,7 +33,10 @@
 (after! java-mode
   (setq-default c-basic-offset 4))
 
-(setq company-box-icons-acphp '(nil))
+;;(setq company-box-icons-acphp '(nil))
+
+(after! php-mode
+  (set-company-backend! 'php-mode '(company-phpactor :seperate php-extras-company) 'company-dabbrev-code))
 
 (after! latex
   (map! :map LaTeX-mode-map
@@ -47,7 +50,7 @@
   (setq org-html-html5-fancy t
         org-html-doctype "html5"))
 
-(after! org
+(after! ox-latex
   (add-to-list 'org-latex-classes
                '("koma-article"
                  "\\documentclass[11pt]{scrartcl}"
@@ -72,7 +75,7 @@
                  ("\\section{%s}" . "\\section*{%s}")
                  ("\\subsection{%s}" . "\\subsection*{%s}")
                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
-  (setq org-latex-default-class "kome-article"))
+  (setq org-latex-default-class "koma-article"))
 
 (after! org
   (setq evil-org-key-theme '(navigation

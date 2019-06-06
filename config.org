@@ -89,7 +89,13 @@ Java code should be indented using 4 spaces.
 *** PHP
 Disable icons in the autocomplete popup for PHP, because it's buggy.
 #+BEGIN_SRC emacs-lisp
-(setq company-box-icons-acphp '(nil))
+;;(setq company-box-icons-acphp '(nil))
+#+END_SRC
+
+Get company to display completion for stdlib functions.
+#+BEGIN_SRC emacs-lisp
+(after! php-mode
+  (set-company-backend! 'php-mode '(company-phpactor :seperate php-extras-company) 'company-dabbrev-code))
 #+END_SRC
 *** Tex
 **** Keybindings
@@ -120,7 +126,7 @@ Enable line numbers
 **** LaTeX Configuration
 Add KomaScript documentclasses
 #+BEGIN_SRC emacs-lisp
-(after! org
+(after! ox-latex
   (add-to-list 'org-latex-classes
                '("koma-article"
                  "\\documentclass[11pt]{scrartcl}"
@@ -145,7 +151,7 @@ Add KomaScript documentclasses
                  ("\\section{%s}" . "\\section*{%s}")
                  ("\\subsection{%s}" . "\\subsection*{%s}")
                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
-  (setq org-latex-default-class "kome-article"))
+  (setq org-latex-default-class "koma-article"))
 #+END_SRC
 
 *** Keybindings

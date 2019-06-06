@@ -3,8 +3,7 @@
 # key: try                       
 # --
 try {
-    ${3:}
+    ${0:}
 } catch (${1:\Exception} ${2:$e}) {
     error_log($2->getMessage());
-    ${4:}
 }
