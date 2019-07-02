@@ -122,6 +122,13 @@ Enable line numbers
 #+END_SRC
 
 *** Export settings
+Enable the latex backend
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (add-to-list 'org-export-backends 'latex))
+#+END_SRC
+
+More beautiful html export
 #+BEGIN_SRC emacs-lisp
 (after! org
   (setq org-html-html5-fancy t

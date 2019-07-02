@@ -49,6 +49,9 @@
 (remove-hook 'org-mode-hook #'doom|disable-line-numbers)
 
 (after! org
+  (add-to-list 'org-export-backends 'latex))
+
+(after! org
   (setq org-html-html5-fancy t
         org-html-doctype "html5"))
 
