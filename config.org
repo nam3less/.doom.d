@@ -91,12 +91,12 @@ Java code should be indented using 4 spaces.
 *** PHP
 Disable icons in the autocomplete popup for PHP, because it's buggy.
 #+BEGIN_SRC emacs-lisp
-;;(setq company-box-icons-acphp '(nil))
+;; (setq company-box-icons-acphp '(nil))
 #+END_SRC
 
 Get company to display completion for stdlib functions.
 #+BEGIN_SRC emacs-lisp
-(after! php-mode
+;; (after! php-mode
   (set-company-backend! 'php-mode '(company-phpactor :seperate php-extras-company) 'company-dabbrev-code))
 #+END_SRC
 
