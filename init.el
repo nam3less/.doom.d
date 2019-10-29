@@ -1,9 +1,9 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
-;; Copy this file to ~/.doom.d/init.el or ~/.config/doom/init.el ('doom
-;; quickstart' will do this for you). The `doom!' block below controls what
-;; modules are enabled and in what order they will be loaded. Remember to run
-;; 'doom refresh' after modifying it.
+;; Copy this file to ~/.doom.d/init.el or ~/.config/doom/init.el ('doom install'
+;; will do this for you). The `doom!' block below controls what modules are
+;; enabled and in what order they will be loaded. Remember to run 'doom refresh'
+;; after modifying it.
 ;;
 ;; More information about these modules (and what flags they support) can be
 ;; found in modules/README.org.
@@ -38,7 +38,7 @@
         +all             ; catch all popups that start with an asterix
         +defaults)       ; default popup rules
        ;;pretty-code       ; replace bits of code with pretty symbols
-       ;;tabbar            ; FIXME an (incomplete) tab bar for Emacs
+       ;;tabs              ; an tab bar for Emacs
        treemacs          ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
@@ -66,6 +66,7 @@
 
        :term
        eshell            ; a consistent, cross-platform shell (WIP)
+       ;;shell             ; a terminal REPL for Emacs
        ;;term              ; terminals in Emacs
        vterm             ; another terminals in Emacs
 
@@ -110,6 +111,7 @@
        elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
        ;;ess               ; emacs speaks statistics
+       ;;fsharp           ; ML stands for Microsoft's Language
        ;;go                ; the hipster dialect
        (haskell +intero) ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
@@ -143,6 +145,7 @@
        ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
+       ;;scheme            ; a fully conniving family of lisps
        (sh +fish)        ; she sells (ba|z|fi)sh shells on the C xor
        ;;solidity          ; do you need a blockchain? No.
        swift             ; who asked for emoji variables?
