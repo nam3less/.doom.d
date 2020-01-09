@@ -4,15 +4,14 @@
 #+PROPERTY: header-args :tangle yes
 
 
-* Configuration
-** General Settings
+* General Settings
 Set the users name and email address
 
 #+BEGIN_SRC emacs-lisp
 (setq user-full-name "Robin Beckmann"
       user-mail-address "robin.m.beckmann@gmail.com")
 #+END_SRC
-** Interface
+* Interface
 Set the font and configure the line numbers correctly.
 If set to ~'relative~, the numbering gets fucked up in org-mode
 #+BEGIN_SRC emacs-lisp
@@ -25,7 +24,8 @@ Show trailing whitespace.
 (setq show-trailing-whitespace t)
 #+END_SRC
 
-*** Treemacs
+** Treemacs
+*** Show current file in tree
 Ever wondered where you are in your filetree? Never again, 'cause treemacs will
 now follow your current file.
 #+BEGIN_SRC emacs-lisp
@@ -33,15 +33,20 @@ now follow your current file.
   (treemacs-follow-mode))
 #+END_SRC
 
-** Completion Settings
-*** Projectile
+*** Fix the ugly buttons
+#+BEGIN_SRC emacs-lisp
+(setq-default doom-themes-treemacs-theme "doom-colors")
+#+END_SRC
+
+* Completion Settings
+** Projectile
 Include hidden files in projectile's search
 #+BEGIN_SRC emacs-lisp
 (after! projectile
   (setq projectile-generic-command "find -L . -type f -print0"))
 #+END_SRC
 
-*** Company
+** Company
 Reduce the minimum length of a sequence before company begins to display the
 possible completions.
 #+BEGIN_SRC emacs-lisp
@@ -56,8 +61,16 @@ quickly.
   (setq company-quickhelp-delay 0.2))
 #+END_SRC
 
-** Eshell
-*** Aliases
+** LSP
+*** Elixir
+Correct the language server executable...
+
+#+BEGIN_SRC emacs-lisp
+(setq lsp-clients-elixir-server-executable "elixir-ls")
+#+END_SRC
+
+* Eshell
+** Aliases
 - la :: ~ls -Al~
 - ll :: ~ls -l~
 
@@ -67,8 +80,8 @@ quickly.
    "la" "ls -lA"
    "ll" "ls -l"))
 #+END_SRC
-** Language specific settings
-*** Javascript
+* Language specific settings
+** Javascript
 Set the correct javascript linter, because personally I prefer semicolons in
 Javascript.
 Furthermore Javascript code be indented using 2 spaces.
@@ -81,14 +94,14 @@ Furthermore Javascript code be indented using 2 spaces.
         js-indent-level 2))
 #+END_SRC
 
-*** Java
+** Java
 Java code should be indented using 4 spaces.
 #+BEGIN_SRC emacs-lisp
 (after! java-mode
   (setq-default c-basic-offset 4))
 #+END_SRC
 
-*** PHP
+** PHP
 Disable icons in the autocomplete popup for PHP, because it's buggy.
 #+BEGIN_SRC emacs-lisp
 (setq company-box-icons-acphp '(nil))
@@ -108,8 +121,8 @@ Enable phpactors hover function for eldoc
             (setq eldoc-documentation-function 'phpactor-hover)))
 #+END_SRC
 
-*** Tex
-**** Keybindings
+** Tex
+*** Keybindings
 - v :: View the current line in the generated PDF file.
 - c :: Execute a TeX command on the master of the current file. Useful to
      rebuild the document.
@@ -121,13 +134,13 @@ Enable phpactors hover function for eldoc
         (:desc "Command on master" :n "c" #'TeX-command-master)))
 #+END_SRC
 
-** Org-mode
+* Org-mode
 Enable line numbers
 #+BEGIN_SRC emacs-lisp
 (remove-hook 'org-mode-hook #'doom|disable-line-numbers)
 #+END_SRC
 
-*** Export settings
+** Export settings
 Enable the latex backend
 #+BEGIN_SRC emacs-lisp
 (after! org
@@ -141,7 +154,7 @@ More beautiful html export
         org-html-doctype "html5"))
 #+END_SRC
 
-**** LaTeX Configuration
+*** LaTeX Configuration
 Add KomaScript documentclasses
 #+BEGIN_SRC emacs-lisp
 (after! ox-latex
@@ -172,7 +185,7 @@ Add KomaScript documentclasses
   (setq org-latex-default-class "koma-article"))
 #+END_SRC
 
-*** Keybindings
+** Keybindings
 Activate all evil-org bindings.
 
 #+BEGIN_SRC emacs-lisp
@@ -195,4 +208,20 @@ Add the following keybindings under the localleader
   (map! :map org-mode-map
         :localleader
         (:desc "Export" :n "e" #'org-export-dispatch)))
+#+END_SRC
+* Email (notmuch)
+Set the backend to mbsync
+#+BEGIN_SRC emacs-lisp
+(setq-default +notmuch-sync-backend 'mbsync)
+#+END_SRC
+
+I want to see my modeline -__-
+#+BEGIN_SRC emacs-lisp
+(after! notmuch
+  (setq notmuch-message-headers-visible t)
+  (remove-hook! '(notmuch-show-mode-hook
+                  notmuch-tree-mode-hook
+                  notmuch-search-mode-hook)
+                #'hide-mode-line-mode)
+)
 #+END_SRC
